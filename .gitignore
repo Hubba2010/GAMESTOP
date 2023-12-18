@@ -21,7 +21,7 @@
 /frontend/*.sublime-workspace
 
 # Visual Studio Code
-frontend/.vscode/
+/frontend/.vscode/
 /frontend/.history/*
 
 # Miscellaneous
