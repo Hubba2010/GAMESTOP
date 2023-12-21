@@ -1,0 +1,46 @@
+.sub-nav-container {
+    padding: 20px 10px;
+    background-color: #ddd;
+    overflow-x: auto;
+
+    .nav-links-list {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+
+        .best-deals a {
+            color: red;
+            text-shadow: 0px 0px 1px black;
+        }
+
+        li {
+            a {
+                font-weight: bold;
+                letter-spacing: 0.5px;
+                color: black;
+                padding: 20px 30px;
+            }
+        }
+    }
+}
+
+@media (width < 1200px) {
+    .sub-nav-container {
+        .nav-links-list {
+            justify-content: flex-start;
+        }
+    }
+}
+
+@media (width < 768px) {
+    .sub-nav-container {
+        .nav-links-list {
+            padding: 0;
+            li a {
+                font-size: 14px;
+                padding: 20px 15px;
+                letter-spacing: 0;
+            }
+        }
+    }
+}

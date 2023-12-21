@@ -1,0 +1,135 @@
+.main-menu {
+    background: #f7f7f7;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .header-brand {
+        display: flex;
+        align-items: center;
+
+        img {
+            height: 60px;
+            margin-left: 30px;
+            cursor: pointer;
+        }
+    
+        .title {
+            margin-left: 30px;
+            font-family: 'Roboto Condensed';
+            &__red-styling {
+                color: red;
+                text-shadow: 2px 2px 1px black;
+            }
+        }
+    }
+
+    
+
+    .containr {
+        width: 100%;
+        margin-left: 30px;
+
+        .sign-btns {
+            display: flex;
+            gap: 10px;
+            margin: 0 20px;
+
+            .register-btn {
+                border: 3px solid black;
+                border-radius: 8px;
+            }
+
+            a {
+                display: flex;
+                align-items: center;
+                color: black;
+                font-weight: bold;
+                padding: 10px;
+            }
+        }
+
+        .shopping-cart {
+            margin: 0 30px 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: black;
+            font-weight: bold;
+
+            &__description {
+                margin-right: 5px;
+            }
+
+            &__icon {
+                position: relative;
+
+                &--count {
+                    min-width: 16px;
+                    font-size: 0.75em;
+                    position: absolute;
+                    text-align: center;
+                    font-weight: 100;
+                    right: 0;
+                    top: -10px;
+                    background-color: red;
+                    color: white;
+                    border-radius: 50%;
+                }
+
+                mat-icon {
+                    z-index: 5;
+                }
+            }
+        }
+    }
+}
+
+@media (width < 1200px) {
+
+    .main-menu {
+        flex-wrap: wrap;
+
+        .header-brand {
+            margin-top: 20px;
+            width: 100%;
+
+            img {
+                margin-left: 20px;
+            }
+        }
+
+        .containr {
+            padding: 20px 0;
+            margin: 0 20px;
+
+            search-product {
+                margin-left: 10px;
+            }
+        }
+    }  
+}
+
+@media (width < 768px) {
+    .containr {
+        flex-wrap: wrap;
+        gap: 20px;
+
+        search-product {
+            width: 100%;
+            margin-right: 10px;
+        }
+    }
+}
+
+@media (width < 576px) {
+    .sign-btns {
+        margin: 0 !important;
+        font-size: 0.8rem;
+    }
+
+    .shopping-cart__description {
+        display: none;
+    }
+}

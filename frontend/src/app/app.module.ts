@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
+import { MainMenuModule } from './main-menu/main-menu.module';
+import { SubNavModule } from './sub-nav/sub-nav.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    MainMenuModule,
+    SubNavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
