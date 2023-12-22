@@ -1,0 +1,22 @@
+<div class="register d-flex justify-content-center">
+    <h3 class="register__heading">SIGN UP</h3>
+    <div class="register__form">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="register-control">
+                <label for="registerEmail">Email address</label>
+                <input type="email" formControlName="registerEmail" placeholder="e.g. test.user@gmail.com">
+            </div>
+            <div class="register-control mt-5">
+                <label for="registerPassword">Password</label>
+                <input type="password" formControlName="registerPassword" placeholder="e.g. zaq1@wsx3edc">
+            </div>
+            <div class="register-control mt-5">
+                <label for="confirmRegisterPassword">Confirm Password</label>
+                <input type="password" formControlName="confirmRegisterPassword" placeholder="Confirm Password">
+            </div>
+            <div class="button-wrapper d-flex justify-content-center">
+                <button class="register-btn" type="submit" [disabled]="registerForm.invalid">SIGN UP</button>
+            </div>
+        </form>
+    </div>
+</div>

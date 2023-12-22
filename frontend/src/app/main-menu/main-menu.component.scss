@@ -8,11 +8,11 @@
     .header-brand {
         display: flex;
         align-items: center;
+        cursor: pointer;
 
         img {
             height: 60px;
             margin-left: 30px;
-            cursor: pointer;
         }
     
         .title {

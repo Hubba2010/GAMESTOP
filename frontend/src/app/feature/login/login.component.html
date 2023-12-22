@@ -1,0 +1,19 @@
+<div class="login d-flex justify-content-center">
+    <h3 class="login__heading">SIGN IN</h3>
+    <div class="login__form">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="login-control">
+                <label for="loginEmail">Email address</label>
+                <input type="email" formControlName="loginEmail" placeholder="e.g. test.user@gmail.com">
+            </div>
+            <div class="login-control mt-5">
+                <label for="loginPassword">Password</label>
+                <input type="password" formControlName="loginPassword" placeholder="e.g. zaq1@wsx3edc">
+            </div>
+            <div class="button-wrapper d-flex align-items-center flex-column">
+                <button class="login-btn" type="submit" [disabled]="loginForm.invalid">SIGN IN</button>
+                <a class="register-link mt-4" routerLink="/register">Don't have an account?</a>
+            </div>
+        </form>
+    </div>
+</div>

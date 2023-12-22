@@ -1,13 +1,13 @@
 <header class="main-menu">
-    <div class="header-brand">
+    <div class="header-brand" routerLink="/">
         <img src="../../assets/img/controller.png" alt="Playstation controller">
         <h1 class="title">Game<span class="title__red-styling">Stop</span></h1>
     </div>
     <div class="containr d-flex">
         <search-product></search-product>
         <div class="sign-btns">
-            <a class="login-btn" href="#">Sign in</a>
-            <a class="register-btn" href="#">Sign up</a>
+            <a class="login-btn" routerLink="/login" routerLinkActive="selected">Sign in</a>
+            <a class="register-btn" routerLink="/register" routerLinkActive="selected">Sign up</a>
         </div>
         <a class="shopping-cart" href="#">
             <span class="shopping-cart__description">Cart</span>
