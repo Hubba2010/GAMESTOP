@@ -8,6 +8,7 @@ import { LoginModule } from './feature/login/login.module';
 import { RegisterModule } from './feature/register/register.module';
 import { MainMenuModule } from './main-menu/main-menu.module';
 import { SubNavModule } from './sub-nav/sub-nav.module';
+import { FooterModule } from './footer/footer.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SubNavModule } from './sub-nav/sub-nav.module';
     MainMenuModule,
     SubNavModule,
     LoginModule,
-    RegisterModule
+    RegisterModule,
+    FooterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
