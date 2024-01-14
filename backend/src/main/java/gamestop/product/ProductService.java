@@ -25,7 +25,7 @@ public class ProductService {
         List<Product> allProducts = productRepository.findAll();
         List<Product> products = new ArrayList<>();
         for(int i=0;i< allProducts.size();i++){
-            if(allProducts.get(i).getPreviousPrice()>0){
+            if(allProducts.get(i).getPreviousPrice() != null){
                 products.add(allProducts.get(i));
             }
         }

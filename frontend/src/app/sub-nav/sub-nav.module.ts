@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SubNavComponent } from './sub-nav.component';
-
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     SubNavComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [SubNavComponent]
 })

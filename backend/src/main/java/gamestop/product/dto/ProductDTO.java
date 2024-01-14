@@ -2,12 +2,13 @@ package gamestop.product.dto;
 
 import gamestop.product.ProductType;
 
-public record ProductDTO(ProductType productType,
+public record ProductDTO(long id,
+                         ProductType productType,
                          String name,
                          String imageUrl,
                          String description,
                          double price,
-                         double previousPrice,
+                         Double previousPrice,
                          double rating,
                          double ratingAmount) {
                          }

@@ -14,12 +14,18 @@
         }
 
         li {
+            margin: -2px 0;
             a {
                 font-weight: bold;
                 letter-spacing: 0.5px;
                 color: black;
                 padding: 20px 30px;
                 white-space: nowrap;
+                transition: 0.3s background-color ease-in-out;
+            }
+
+            .selected {
+                background-color: #ccc;
             }
         }
     }

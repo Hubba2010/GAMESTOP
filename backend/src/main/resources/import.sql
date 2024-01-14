@@ -1,2 +1,2 @@
-insert into products (id, product_type, name, image_url, description, quantity, price, previus_price, rating, rating_amount) values (0, 0, 'game', 'url', 'desc', 20, 50, 30, 5, 2);
-insert into products (id, product_type, name, image_url, description, quantity, price, previus_price, rating, rating_amount) values (1, 1, 'console', 'url2', 'desc2', 10, 50, 40, 2, 5);
+insert into products (product_type, name, image_url, description, quantity, price, previous_price, rating, rating_amount) values ('VIDEO_GAMES', 'Grand Theft Auto 5', 'url', 'This game is awesome', 40, 80, 40, 4.8, 466);
+insert into products (product_type, name, image_url, description, quantity, price, previous_price, rating, rating_amount) values ('CONSOLES', 'Playstation 5', 'url', 'Best console on the market', 12, 699, null, 5, 984);

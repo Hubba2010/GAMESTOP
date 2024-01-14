@@ -1,8 +1,9 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AboutUsComponent } from "./feature/about-us/about-us.component";
-import { LoginComponent } from "./feature/login/login.component";
 import { RegisterComponent } from "./feature/register/register.component";
+import { LoginComponent } from "./feature/login/login.component";
+import { ProductListComponent } from "./feature/product-list/product-list.component";
 
 export const mainRoutes: Routes = [
     {
@@ -11,13 +12,15 @@ export const mainRoutes: Routes = [
     },
     {
         path: 'login',
-        component: LoginComponent,
-        loadChildren: () => import('./feature/login/login.module').then(m => m.LoginModule)
+        component: LoginComponent
     },
     {
         path: 'register',
-        component: RegisterComponent,
-        loadChildren: () => import('./feature/register/register.module').then(m => m.RegisterModule)
+        component: RegisterComponent
+    },
+    {
+        path: 'product-list',
+        component: ProductListComponent
     }
 ];
 

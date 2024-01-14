@@ -6,6 +6,7 @@ public class ProductMapper {
 
     public static ProductDTO toDTO(Product product) {
         return new ProductDTO(
+                product.getId(),
                 product.getProductType(),
                 product.getName(),
                 product.getImageUrl(),

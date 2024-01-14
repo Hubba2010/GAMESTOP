@@ -1,29 +1,30 @@
 package gamestop.product;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.annotation.Nullable;
+import jakarta.persistence.*;
 
 @Entity(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Enumerated(EnumType.STRING)
     private ProductType productType;
     private String name;
     private String imageUrl;
     private String description;
     private int quantity;
     private double price;
-    private double previousPrice;
+    @Column
+    @Nullable
+    private Double previousPrice;
     private double rating;
     private double ratingAmount;
 
     public Product() {
     }
 
-    public Product(Long id, ProductType productType, String name, String imageUrl, String description, int quantity, double price, double previousPrice, double rating, double ratingAmount) {
+    public Product(Long id, ProductType productType, String name, String imageUrl, String description, int quantity, double price, Double previousPrice, double rating, double ratingAmount) {
         this.id = id;
         this.productType = productType;
         this.name = name;
@@ -61,7 +62,7 @@ public class Product {
             existingProduct.setQuantity(updatedProduct.getQuantity());
         }
 
-        if (updatedProduct.getPreviousPrice() >= 0) {
+        if (updatedProduct.getPreviousPrice() != null) {
             existingProduct.setPreviousPrice(updatedProduct.getPreviousPrice());
         }
 
@@ -123,7 +124,7 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
@@ -131,15 +132,15 @@ public class Product {
         this.price = price;
     }
 
-    public double getPreviousPrice() {
+    public Double getPreviousPrice() {
         return previousPrice;
     }
 
-    public void setPreviousPrice(double previousPrice) {
+    public void setPreviousPrice(Double previousPrice) {
         this.previousPrice = previousPrice;
     }
 
-    public double getRating() {
+    public Double getRating() {
         return rating;
     }
 

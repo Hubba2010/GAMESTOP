@@ -1,0 +1,14 @@
+.product-list {
+    margin: 3em;
+
+    &__header {
+        border-bottom: 1px solid #d9d9d9;
+        padding: 1em 0;
+    }
+
+    &__wrapper {
+        justify-content: space-evenly;
+        gap: 40px;
+        margin-top: 80px;
+    }
+}
