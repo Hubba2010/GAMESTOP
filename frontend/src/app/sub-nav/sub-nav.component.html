@@ -5,14 +5,14 @@
         <li>
         <li class="best-deals">
             <a routerLink="/product-list" routerLinkActive="selected"
-                [queryParams]="{productType: ProductListTypes.BEST_DEALS}">
+                [queryParams]="{productType: 'BEST_DEALS'}">
                 {{ProductListTypes.BEST_DEALS}}
             </a>
         </li>
         <ng-container *ngFor="let productKey of ProductListTypesKeys | slice:1">
             <li>
                 <a routerLink="/product-list" routerLinkActive="selected"
-                    [queryParams]="{productType: ProductListTypes[productKey]}">
+                    [queryParams]="{productType: productKey}">
                     {{ProductListTypes[productKey]}}
                 </a>
             </li>

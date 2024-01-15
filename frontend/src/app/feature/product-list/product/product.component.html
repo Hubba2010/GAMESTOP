@@ -1,32 +1,36 @@
-<div class="wrapper">
-    <a href="#">
-        <div class="product-tile">
-            <div class="product-tile__image">
-                <img src="../../../../assets/img/mock/ps5-controller.png" alt="Image of a product">
-            </div>
-            <div class="product-tile__header">
-                <span>PS5 Controller</span>
-            </div>
-            <div class="d-flex align-items-center">
-                <div class="product-tile__rating">
-                    <div class="fill-ratings">
-                        <span>★★★★★</span>
+<ng-container *ngIf="productData">
+    <div class="wrapper">
+        <a href="#">
+            <div class="product-tile">
+                <div class="product-tile__image">
+                    <span *ngIf="productData.previousPrice" class="best-deal">BEST DEAL!</span>
+                    <img [src]="productData.imageUrl"
+                        [alt]="'Image of a product of category: ' + productData.productType">
+                </div>
+                <div class="product-tile__header">
+                    <span>{{productData.name}}</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="product-tile__rating">
+                        <div class="fill-ratings">
+                            <span>★★★★★</span>
+                        </div>
+                        <div class="empty-ratings" [ngStyle]="{width: productData.rating * 20 + 'px'}">
+                            <span>★★★★★</span>
+                        </div>
                     </div>
-                    <div class="empty-ratings">
-                        <span>★★★★★</span>
+                    <span class="product-tile__ratings-amount ml-2"> ({{productData.ratingAmount}})</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="product-tile__price">
+                        <span class="font-weight-bold">${{productData.price}}</span>
+                    </div>
+                    <div *ngIf="productData.previousPrice" class="product-tile__price before-discount">
+                        <span class="font-weight-bold">${{productData.previousPrice}}</span>
                     </div>
                 </div>
-                <span class="product-tile__ratings-amount ml-2"> (10)</span>
-            </div>
-            <div class="d-flex justify-content-between">
-                <div class="product-tile__price">
-                    <span class="font-weight-bold">$99.99</span>
-                </div>
-                <div class="product-tile__price before-discount">
-                    <span class="font-weight-bold">$129.99</span>
-                </div>
-            </div>
 
-        </div>
-    </a>
-</div>
+            </div>
+        </a>
+    </div>
+</ng-container>

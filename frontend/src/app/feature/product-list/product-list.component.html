@@ -1,13 +1,10 @@
 <div class="product-list">
     <div class="product-list__header">
-        <h2>Products for category: <b> {{type}}</b></h2>
+        <h2>Products for category: <b> {{typeLabel}}</b></h2>
     </div>
-    <div class="row product-list__wrapper">
-        <product></product>
-        <product></product>
-        <product></product>
-        <product></product>
-        <product></product>
-        <product></product>
+    <div *ngIf="productsData$ | async as productsData" class="row product-list__wrapper">
+        <ng-container *ngFor="let product of productsData">
+            <product [productData]="product"></product>
+        </ng-container>
     </div>
 </div>
