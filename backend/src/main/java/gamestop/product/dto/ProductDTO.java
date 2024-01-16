@@ -10,6 +10,7 @@ public record ProductDTO(long id,
                          double price,
                          Double previousPrice,
                          double rating,
-                         double ratingAmount) {
+                         double ratingAmount,
+                         int quantity) {
                          }
 

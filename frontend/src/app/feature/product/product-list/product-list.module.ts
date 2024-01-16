@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ProductListComponent } from './product-list.component';
-import { ProductModule } from './product/product.module';
+import { ProductModule } from '../product.module';
 
 @NgModule({
   declarations: [ProductListComponent],

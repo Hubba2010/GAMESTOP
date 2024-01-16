@@ -14,7 +14,8 @@ public class ProductMapper {
                 product.getPrice(),
                 product.getPreviousPrice(),
                 product.getRating(),
-                product.getRatingAmount()
+                product.getRatingAmount(),
+                product.getQuantity()
         );
     }
 
@@ -28,6 +29,7 @@ public class ProductMapper {
         product.setPreviousPrice(productDTO.previousPrice());
         product.setRating(productDTO.rating());
         product.setRatingAmount(productDTO.ratingAmount());
+        product.setQuantity(productDTO.quantity());
 
         return product;
     }

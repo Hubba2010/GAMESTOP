@@ -19,4 +19,8 @@ export class ProductService {
     public getAllDiscounted(): Observable<Product[]> {
         return this.http.get<Product[]>(`${PRODUCT_URL}/best-deals`);
     }
+
+    public getProductById(productId: number): Observable<Product> {
+        return this.http.get<Product>(`${PRODUCT_URL}/${productId}`)
+    }
 }

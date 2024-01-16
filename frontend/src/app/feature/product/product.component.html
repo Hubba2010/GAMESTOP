@@ -1,6 +1,6 @@
 <ng-container *ngIf="productData">
     <div class="wrapper">
-        <a href="#">
+        <a routerLink="/product" [queryParams]="{id: productData.id}">
             <div class="product-tile">
                 <div class="product-tile__image">
                     <span *ngIf="productData.previousPrice" class="best-deal">BEST DEAL!</span>

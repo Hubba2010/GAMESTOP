@@ -1,0 +1,42 @@
+<ng-container *ngIf="productData$ | async as productData">
+    <div class="row selected-product">
+        <div class="selected-product__image">
+            <img [src]="productData.imageUrl" alt="">
+        </div>
+        <div class="selected-product__aside">
+            <div class="product-data">
+                <h2 class="product-data__name font-weight-bold">{{productData.name}}</h2>
+                <div class="product-data__rating mt-2">
+                    <div class="d-flex align-items-center">
+                        <div class="product-tile__rating">
+                            <div class="fill-ratings">
+                                <span>★★★★★</span>
+                            </div>
+                            <div class="empty-ratings" [ngStyle]="{width: productData.rating * 20 + 'px'}">
+                                <span>★★★★★</span>
+                            </div>
+                        </div>
+                        <span class="product-tile__ratings-amount ml-2"> ({{productData.ratingAmount}})</span>
+                    </div>
+                </div>
+                <div class="product-data__price">
+                    <span class="product-data__price--actual font-weight-bold">${{productData.price}}</span>
+                    <span class="product-data__price--previous font-weight-bold">${{productData.previousPrice}}</span>
+                </div>
+            </div>
+            <div class="product-set-amount">
+                <button type="button" class="amount-btn" (click)="decreaseBuyAmount()"><span>&#8592;</span></button>
+                <input type="number" class="amount-input" [min]="MIN_BUY_AMOUNT" [max]="MAX_BUY_AMOUNT"
+                    (change)="check()" [(ngModel)]="buyAmount">
+                <button type="button" class="amount-btn" (click)="increaseBuyAmount()"><span>&#8594;</span></button>
+            </div>
+            <div class="add-to-cart">
+                <button type="button" class="add-btn" [disabled]="!buyAmount" (click)="addToCart()">Add To Cart</button>
+            </div>
+        </div>
+        <div class="selected-product__description">
+            <p class="font-weight-bold">{{productData.description}}</p>
+        </div>
+    </div>
+
+</ng-container>

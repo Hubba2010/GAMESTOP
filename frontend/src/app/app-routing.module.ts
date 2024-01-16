@@ -3,7 +3,8 @@ import { RouterModule, Routes } from "@angular/router";
 import { AboutUsComponent } from "./feature/about-us/about-us.component";
 import { RegisterComponent } from "./feature/register/register.component";
 import { LoginComponent } from "./feature/login/login.component";
-import { ProductListComponent } from "./feature/product-list/product-list.component";
+import { ProductListComponent } from "./feature/product/product-list/product-list.component";
+import { SelectedProductComponent } from "./feature/product/selected-product/selected-product.component";
 
 export const mainRoutes: Routes = [
     {
@@ -21,6 +22,10 @@ export const mainRoutes: Routes = [
     {
         path: 'product-list',
         component: ProductListComponent
+    },
+    {
+        path: 'product',
+        component: SelectedProductComponent
     }
 ];
 

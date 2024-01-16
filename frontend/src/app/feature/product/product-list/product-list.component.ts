@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Subscription, filter, map, switchMap } from 'rxjs';
+import { filter, map, switchMap } from 'rxjs';
 import { ProductListTypes, ProductListTypesEntries } from 'src/app/const/product-list-types';
-import { ProductService } from '../services/product.service';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'product-list',
@@ -10,9 +10,8 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./product-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductListComponent implements OnInit, OnDestroy {
+export class ProductListComponent {
 
-  private subscription = new Subscription();
   public typeLabel: ProductListTypes | undefined;
   public productsData$ = this.activatedRoute.queryParamMap
   .pipe(
@@ -33,14 +32,4 @@ export class ProductListComponent implements OnInit, OnDestroy {
      private activatedRoute: ActivatedRoute,
      private productService: ProductService
   ) {}
-
-  public ngOnInit(): void {
-    this.subscription.add(
-      
-    )
-  }
-
-  public ngOnDestroy(): void {
-   this.subscription.unsubscribe();
-  }
 }
