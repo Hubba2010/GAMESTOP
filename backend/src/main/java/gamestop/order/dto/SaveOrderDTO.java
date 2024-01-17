@@ -6,23 +6,23 @@ import gamestop.user.User;
 import java.util.List;
 
 public class SaveOrderDTO {
-    private User user;
+    private Long userId;
     private List<Product> products;
 
     public SaveOrderDTO() {
     }
 
-    public SaveOrderDTO(User user, List<Product> products) {
-        this.user = user;
+    public SaveOrderDTO(Long userId, List<Product> products) {
+        this.userId = userId;
         this.products = products;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public List<Product> getProducts() {

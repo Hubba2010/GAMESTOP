@@ -28,9 +28,13 @@
         &__set-amount {
             display: flex;
             flex-direction: column;
+            gap: 10px;
             max-width: 60px;
 
+            input {text-align: center;}
+
             .amount-btn {
+                width: 60px;
                 padding: 5px;
                 border: none;
                 background-color: black;
@@ -66,6 +70,29 @@
           .delete-icon:after {
             transform: rotate(-45deg);
           }
+    }
+
+    .order-summary {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        font-size: 1.5em;
+        font-weight: bold;
+        padding: 40px;
+        margin-bottom: 150px;
+
+        button {
+            border: none;
+            padding: 20px;
+            background-color: red;
+            color: white;
+
+            &:disabled {
+                opacity: 0.5;
+                background-color: #ddd;
+                color: black;
+            }
+        }
     }
 }
 

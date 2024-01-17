@@ -1,12 +1,14 @@
 package gamestop.user.dto;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 
 public class UserDTO {
 
     private Long id;
     @Email
     private String email;
+    @NotNull
     private String login;
 
     public UserDTO() {

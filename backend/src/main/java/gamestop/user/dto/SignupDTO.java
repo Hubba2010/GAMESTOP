@@ -1,11 +1,13 @@
 package gamestop.user.dto;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 
 public class SignupDTO {
 
     @Email
     private String email;
+    @NotNull
 
     private String login;
 

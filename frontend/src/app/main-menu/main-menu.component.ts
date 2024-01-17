@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { AuthService } from '../feature/services/auth.service';
+import { CartService } from '../feature/services/cart.service';
 
 @Component({
   selector: 'main-menu',
@@ -7,5 +9,24 @@ import { AuthService } from '../feature/services/auth.service';
   styleUrls: ['./main-menu.component.scss']
 })
 export class MainMenuComponent {
-  constructor(private authService: AuthService){}
+  private userDetailsVisibleSub = new BehaviorSubject<boolean>(false);
+  public userDetailsVisible$ = this.userDetailsVisibleSub.asObservable();
+
+  public readonly isLoggedIn$ = this.authService.isLoggedIn$.asObservable();
+  public readonly user$ = this.authService.user$.asObservable();
+  public readonly cartItemsCounter$ = this.cartService.cartItemsAmount$;
+
+  constructor(
+    private authService: AuthService,
+    private cartService: CartService
+  ){}
+
+  public toggleUserDetailsVisibility(): void {
+    this.userDetailsVisibleSub.next(!this.userDetailsVisibleSub.value);
+  }
+
+  public logout(): void {
+    this.toggleUserDetailsVisibility();
+    this.authService.logout();
+  }
 }

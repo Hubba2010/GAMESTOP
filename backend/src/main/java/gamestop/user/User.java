@@ -25,7 +25,7 @@ public class User {
     public User(Long id, String email, String login, String password, Double balance, List<Order> orders) {
         this.login = login;
         this.orders = orders;
-        id = id;
+        this.id = id;
         this.email = email;
         this.password = password;
         this.balance = balance;
@@ -36,7 +36,7 @@ public class User {
     }
 
     public void setId(Long id) {
-        id = id;
+        this.id = id;
     }
 
     public String getEmail() {

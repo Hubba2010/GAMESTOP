@@ -6,6 +6,7 @@ import { LoginComponent } from "./feature/login/login.component";
 import { ProductListComponent } from "./feature/product/product-list/product-list.component";
 import { SelectedProductComponent } from "./feature/product/selected-product/selected-product.component";
 import { CartComponent } from "./feature/cart/cart.component";
+import { ProductListSearchComponent } from "./feature/product/product-list-search/product-list-search.component";
 // import { NotLoggedInGuard } from "./feature/services/guard/not-logged-in.guard";
 
 export const mainRoutes: Routes = [
@@ -26,6 +27,10 @@ export const mainRoutes: Routes = [
     {
         path: 'product-list',
         component: ProductListComponent
+    },
+    {
+        path: 'product-list-search',
+        component: ProductListSearchComponent
     },
     {
         path: 'product',

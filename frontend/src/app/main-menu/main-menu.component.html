@@ -5,23 +5,32 @@
     </div>
     <div class="containr d-flex">
         <search-product></search-product>
-        <ng-container>
-            <div class="sign-btns">
-                <a class="login-btn" routerLink="/login" routerLinkActive="selected">Sign in</a>
-                <a class="register-btn" routerLink="/register" routerLinkActive="selected">Sign up</a>
+        <div *ngIf="!(isLoggedIn$ | async)" class="sign-btns">
+            <a class="login-btn" routerLink="/login" routerLinkActive="selected">Sign in</a>
+            <a class="register-btn" routerLink="/register" routerLinkActive="selected">Sign up</a>
+        </div>
+        <ng-container *ngIf="user$ | async as user">
+            <div *ngIf="isLoggedIn$ | async" class="user-info">
+                <button class="user-info__toggler" (click)="toggleUserDetailsVisibility()">
+                    <span class="font-weight-bold">Welcome, {{user.login}}!
+                        <i class="arrow"
+                            [ngClass]="{'up': userDetailsVisible$ | async, 'down': !(userDetailsVisible$ | async)}">
+                        </i>
+                    </span>
+                </button>
+                <div *ngIf="userDetailsVisible$ | async" class="user-details">
+                    <span>Email address: {{user.email}}</span>
+                    <button>Purchase history</button>
+                    <button (click)="logout()">Logout</button>
+                </div>
             </div>
         </ng-container>
-
         <a class="shopping-cart" routerLink="/cart" routerLinkActive="selected">
             <span class="shopping-cart__description">Cart</span>
             <div class="shopping-cart__icon">
-                <span class="shopping-cart__icon--count">1</span>
+                <span class="shopping-cart__icon--count">{{cartItemsCounter$ | async}}</span>
                 <mat-icon>shopping_cart</mat-icon>
             </div>
         </a>
     </div>
 </header>
-
-<!-- <ng-template #loggedInUserData let>
-    Welcome, {{}}
-</ng-template> -->

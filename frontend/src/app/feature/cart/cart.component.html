@@ -1,28 +1,37 @@
 <div class="cart-container">
-    <ng-container *ngIf="DATA; else emptyCart">
-        <ng-container *ngFor="let productEntry of DATA; trackBy: trackByFn">
-            <div class="row cart-entry">
-                <div class="cart-entry__image">
-                    <img [src]="productEntry.product.imageUrl" [alt]="productEntry.product.name">
+    <ng-container *ngIf="cartData$ | async as cartData">
+        <ng-container *ngIf="cartData.length; else emptyCart">
+            <ng-container *ngFor="let productEntry of cartData; trackBy: trackByFn">
+                <div class="row cart-entry">
+                    <div class="cart-entry__image">
+                        <img [src]="productEntry.imageUrl" [alt]="productEntry.name">
+                    </div>
+                    <div class="cart-entry__name">
+                        <h4>{{productEntry.name}}</h4>
+                    </div>
+                    <div class="cart-entry__amount">
+                        <span class="font-weight-bold">{{productEntry.quantity}}X</span>
+                    </div>
+                    <div class="cart-entry__set-amount">
+                        <button type="button" (click)="increaseQuantity(productEntry)"
+                            class="amount-btn"><span>&#8593;</span></button>
+                        <button type="button" (click)="decreaseQuantity(productEntry)"
+                            class="amount-btn"><span>&#8595;</span></button>
+                    </div>
+                    <div class="cart-entry__price">
+                        <span class="font-weight-bold">${{productEntry.price * productEntry.quantity}}</span>
+                    </div>
+                    <div class="delete-icon" (click)="removeItemFromCart(productEntry.id)"></div>
                 </div>
-                <div class="cart-entry__name">
-                    <h4>{{productEntry.product.name}}</h4>
-                </div>
-                <div class="cart-entry__amount">
-                    <span class="font-weight-bold">{{productEntry.quantity}}X</span>
-                </div>
-                <div class="cart-entry__set-amount">
-                    <button type="button" class="amount-btn"><span>&#8593;</span></button>
-                    <input type="number" class="amount-input">
-                    <button type="button" class="amount-btn"><span>&#8595;</span></button>
-                </div>
-                <div class="cart-entry__price">
-                    <span class="font-weight-bold">${{productEntry.product.price * productEntry.quantity}}</span>
-                </div>
-                <div class="delete-icon"></div>
+            </ng-container>
+            <div class="order-summary">
+                <span>Total order price: {{orderValue$ | async}}$</span>
+                <button [disabled]="!(user$ | async)" (click)="purchase()">Buy</button>
+                <span style="color: red;" *ngIf="!(user$ | async)">Login to be able to make orders!</span>
             </div>
         </ng-container>
     </ng-container>
+
 </div>
 
 <ng-template #emptyCart>

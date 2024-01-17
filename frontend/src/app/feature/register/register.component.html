@@ -9,6 +9,14 @@
                 <span *ngIf="submitted && registerForm.get('email')?.hasError('email')" class="form-error">Invalid
                     e-mail address</span>
             </div>
+            <div class="register-control mt-3">
+                <label for="login">Login</label>
+                <input [ngClass]="{'error-state': submitted && registerForm.get('login')?.hasError('required')}"
+                    type="text" formControlName="login" placeholder="Enter user login">
+                <span *ngIf="submitted && registerForm.get('login')?.hasError('required')" class="form-error">Enter
+                    valid
+                    username</span>
+            </div>
             <div class="register-control mt-5">
                 <label for="password">Password</label>
                 <input

@@ -31,6 +31,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   private initForm(): void {
     this.registerForm = this.fb.group({
       email: ['', [Validators.email, Validators.required]],
+      login: ['', Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
     }, { validator: this.passwordMatchValidator}
@@ -57,11 +58,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.authService.signup(this.registerForm.value).pipe(
         catchError(err => {
-          alert("ERROR REGISTERING NEW USER");
-          throw 'Error registering new user. Please try again';
+          alert(err.error);
+          throw err.error;
         })
       ).subscribe((response) => {
-        alert("USER REGISTERED SUCCESSFULLY");
+        alert("User registered successfully!");
         this.router.navigate(['/login']);
       })
     )

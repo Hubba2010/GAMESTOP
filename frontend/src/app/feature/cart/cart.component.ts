@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
+import { map } from 'rxjs';
 import { Product } from 'src/app/models/product';
+import { SaveOrderDto } from 'src/app/models/save-order-dto';
+import { AuthService } from '../services/auth.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'cart',
@@ -7,25 +11,38 @@ import { Product } from 'src/app/models/product';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent {
-  public readonly DATA = [{
-     product: {
-      description: "\"Uncharted 4: A Thief's End\" is an exhilarating action-adventure video game developed by Naughty Dog and published by Sony Computer Entertainment. Released in 2016 as the fourth installment in the critically acclaimed Uncharted series, the game follows the adventures of Nathan Drake, a charismatic and resourceful treasure hunter, as he embarks on his final and most personal quest. Set against stunning landscapes and intricately designed environments, players navigate through a thrilling narrative filled with intense action sequences, clever puzzles, and cinematic storytelling. Uncharted 4 showcases breathtaking graphics, seamless gameplay, and a compelling story that delves into Drake's past, making it a must-play title for fans of high-octane adventures and engaging storytelling.",
-      id: 2,
-      imageUrl: 
-      "https://m.media-amazon.com/images/M/MV5BMTYzYzIxMjktMDM4NS00MTM5LWJlMDgtNDRhMDNhOGRmY2EwXkEyXkFqcGdeQXVyMTk2OTAzNTI@._V1_FMjpg_UX1000_.jpg",
-      name: "Uncharted 4",
-      previousPrice: 79,
-      price: 39,
-      productType: "VIDEO_GAMES",
-      quantity: 40,
-      rating: 4.4,
-      ratingAmount: 2002,
-      },
-    quantity: 3
-  }
-]
+  public readonly cartData$ = this.cartService.cart$.pipe(
+    map((cartData: SaveOrderDto) => cartData.products)
+  );
+  public readonly orderValue$ = this.cartData$.pipe(map((products: Product[]) => {
+    return products.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0)
+  }))
+  public readonly user$ = this.authService.user$.asObservable();
+
+  constructor(
+    private cartService: CartService,
+    private authService: AuthService
+  ){}
+  
 
   public trackByFn(index: number, item: any): number {
     return item.id; // or index, or unique identifier property
+  }
+
+  public removeItemFromCart(productId: number) {
+    this.cartService.removeItemFromCart(productId);
+  }
+
+  public increaseQuantity(product: Product): void {
+    this.cartService.addProductToCart(product, 1);
+  }
+
+  public decreaseQuantity(product: Product): void {
+    if (product.quantity > 1)
+    this.cartService.addProductToCart(product, -1);
+  }
+
+  public purchase(): void {
+    this.cartService.purchase();
   }
 }

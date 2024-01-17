@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription, share } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { ProductService } from '../../services/product.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'selected-product',
@@ -21,6 +22,7 @@ export class SelectedProductComponent {
   constructor(
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
+    private cartService: CartService,
     private router: Router) {
     this.productId = +this.activatedRoute.snapshot.queryParams['id'];
     this.productData$ = this.productService.getProductById(this.productId).pipe(share());
@@ -57,7 +59,8 @@ export class SelectedProductComponent {
       return;
     }
 
-    console.log({quantity: this.buyAmount, product: this.productData})
+    console.log({product: {...this.productData, quantity: this.buyAmount}})
+    this.cartService.addProductToCart(this.productData, this.buyAmount);
 
     // navigate to category of added product
     const queryParams = {

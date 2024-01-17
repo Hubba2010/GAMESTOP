@@ -13,6 +13,7 @@ import { RegisterModule } from './feature/register/register.module';
 import { FooterModule } from './footer/footer.module';
 import { MainMenuModule } from './main-menu/main-menu.module';
 import { SubNavModule } from './sub-nav/sub-nav.module';
+import { ProductListSearchModule } from './feature/product/product-list-search/product-list-search.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { SubNavModule } from './sub-nav/sub-nav.module';
     RegisterModule,
     FooterModule,
     ProductListModule,
+    ProductListSearchModule,
     SelectedProductModule,
     CartModule
   ],

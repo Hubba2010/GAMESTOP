@@ -23,4 +23,8 @@ export class ProductService {
     public getProductById(productId: number): Observable<Product> {
         return this.http.get<Product>(`${PRODUCT_URL}/${productId}`)
     }
+
+    public getProductsByPhrase(searchPhrase: string): Observable<Product[]> {
+        return this.http.get<Product[]>(`${PRODUCT_URL}/find`, {params: {name: searchPhrase}})
+    }
 }

@@ -1,0 +1,7 @@
+<div class="product-list">
+    <div *ngIf="productsData$ | async as productsData" class="row product-list__wrapper">
+        <ng-container *ngFor="let product of productsData">
+            <product [productData]="product"></product>
+        </ng-container>
+    </div>
+</div>

@@ -3,6 +3,7 @@ package gamestop.order;
 import gamestop.order.dto.SaveOrderDTO;
 import gamestop.product.Product;
 import gamestop.product.ProductRepository;
+import gamestop.user.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -14,11 +15,13 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
+    private final UserRepository userRepository;
     private List<Product> cart = new ArrayList<>();
 
-    public OrderService(OrderRepository orderRepository, ProductRepository productRepository) {
+    public OrderService(OrderRepository orderRepository, ProductRepository productRepository, UserRepository userRepository) {
         this.orderRepository = orderRepository;
         this.productRepository = productRepository;
+        this.userRepository = userRepository;
     }
 
     public void addToCart(Long productId){
@@ -42,10 +45,9 @@ public class OrderService {
     }
 
     public void purchase(SaveOrderDTO order){
-        order.getUser().setBalance(order.getUser().getBalance()-calculateOrderValue(order));
         Order orderToSave = new Order();
         orderToSave.setProducts(order.getProducts());
-        orderToSave.setUser(order.getUser());
+        orderToSave.setUser(userRepository.findById(order.getUserId()).get());
         orderToSave.setDate(LocalDate.now());
         orderRepository.save(orderToSave);
     }
