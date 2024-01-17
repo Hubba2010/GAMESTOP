@@ -36,6 +36,10 @@ public class ProductService {
         return productRepository.findById(id).map(ProductMapper::toDTO).get();
     }
 
+    public List<ProductDTO> findProducts(String name){
+        return productRepository.findAllByNameContainingIgnoreCase(name).stream().map(ProductMapper::toDTO).toList();
+    }
+
     public void addProduct(Product product){
         productRepository.save(product);
     }

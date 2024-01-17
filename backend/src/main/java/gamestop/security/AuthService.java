@@ -17,6 +17,7 @@ public class AuthService {
     public UserDTO createUser(SignupDTO signupDTO) {
         User user = new User();
         user.setEmail(signupDTO.getEmail());
+        user.setLogin(signupDTO.getLogin());
         user.setPassword(new BCryptPasswordEncoder().encode(signupDTO.getPassword()));
         User createdUser = userRepository.save(user);
         UserDTO userDTO = new UserDTO();

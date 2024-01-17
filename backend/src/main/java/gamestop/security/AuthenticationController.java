@@ -1,9 +1,10 @@
 package gamestop.security;
 
+import gamestop.user.User;
+import gamestop.user.UserRepository;
 import gamestop.user.dto.AuthenticationDTO;
 import gamestop.user.dto.AuthenticationResponse;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -27,10 +28,13 @@ public class AuthenticationController {
 
     private UserDetailsServiceImpl userDetailsService;
 
-    public AuthenticationController(JwtUtil jwtUtil, AuthenticationManager authenticationManager, UserDetailsServiceImpl userDetailsService) {
+    private UserRepository userRepository;
+
+    public AuthenticationController(JwtUtil jwtUtil, AuthenticationManager authenticationManager, UserDetailsServiceImpl userDetailsService, UserRepository userRepository) {
         this.jwtUtil = jwtUtil;
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
+        this.userRepository = userRepository;
     }
 
     @PostMapping("/authenticate")
@@ -48,7 +52,9 @@ public class AuthenticationController {
 
         final String jwt = jwtUtil.generateToken(userDetails.getUsername());
 
-        return new AuthenticationResponse(jwt);
+        User user = userRepository.findFirstByEmail(authenticationDTO.getEmail());
+
+        return new AuthenticationResponse(user.getId(), jwt, user.getLogin(), user.getEmail());
 
     }
 

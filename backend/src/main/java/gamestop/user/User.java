@@ -13,6 +13,7 @@ public class User {
     private Long id;
     @Email
     private String email;
+    private String login;
     private String password;
     private Double balance;
     @OneToMany
@@ -21,7 +22,8 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String email, String password, Double balance, List<Order> orders) {
+    public User(Long id, String email, String login, String password, Double balance, List<Order> orders) {
+        this.login = login;
         this.orders = orders;
         id = id;
         this.email = email;
@@ -67,5 +69,13 @@ public class User {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 }

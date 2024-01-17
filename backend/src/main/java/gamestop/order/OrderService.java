@@ -1,9 +1,11 @@
 package gamestop.order;
 
+import gamestop.order.dto.SaveOrderDTO;
 import gamestop.product.Product;
 import gamestop.product.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +33,7 @@ public class OrderService {
         }
     }
 
-    public double calculateOrderValue(Order order){
+    public double calculateOrderValue(SaveOrderDTO order){
         double sum = 0;
         for(int i=0;i<order.getProducts().size();i++){
             sum += order.getProducts().get(i).getPrice();
@@ -39,8 +41,12 @@ public class OrderService {
         return sum;
     }
 
-    public void purchase(Order order){
+    public void purchase(SaveOrderDTO order){
         order.getUser().setBalance(order.getUser().getBalance()-calculateOrderValue(order));
-        orderRepository.save(order);
+        Order orderToSave = new Order();
+        orderToSave.setProducts(order.getProducts());
+        orderToSave.setUser(order.getUser());
+        orderToSave.setDate(LocalDate.now());
+        orderRepository.save(orderToSave);
     }
 }

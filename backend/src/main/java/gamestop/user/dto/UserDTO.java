@@ -7,13 +7,15 @@ public class UserDTO {
     private Long id;
     @Email
     private String email;
+    private String login;
 
     public UserDTO() {
     }
 
-    public UserDTO(Long id, String name) {
+    public UserDTO(Long id, String name, String login) {
         this.id = id;
         this.email = name;
+        this.login = login;
     }
 
     public Long getId() {
@@ -30,5 +32,13 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 }

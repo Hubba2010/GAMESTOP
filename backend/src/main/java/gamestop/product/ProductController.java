@@ -30,6 +30,11 @@ public class ProductController {
         return productService.getProduct(id);
     }
 
+    @GetMapping("/find")
+    public List<ProductDTO> findProducts(@RequestParam(required = false, defaultValue = "") String name){
+        return productService.findProducts(name);
+    }
+
     @PostMapping
     public void addProduct(@RequestBody Product product){
         productService.addProduct(product);
