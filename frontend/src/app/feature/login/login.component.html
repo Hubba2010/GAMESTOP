@@ -3,12 +3,16 @@
     <div class="login__form">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="login-control">
-                <label for="loginEmail">Email address</label>
-                <input type="email" formControlName="loginEmail" placeholder="e.g. test.user@gmail.com">
+                <label for="email">Email address</label>
+                <input [ngClass]="{'error-state': invalidData}" type="email" formControlName="email"
+                    placeholder="e.g. test.user@gmail.com">
+                <span *ngIf="invalidData" class="form-error">Invalid credentials</span>
             </div>
             <div class="login-control mt-5">
-                <label for="loginPassword">Password</label>
-                <input type="password" formControlName="loginPassword" placeholder="e.g. zaq1@wsx3edc">
+                <label for="password">Password</label>
+                <input [ngClass]="{'error-state': invalidData}" type="password" formControlName="password"
+                    placeholder="e.g. zaq1@wsx3edc">
+                <span *ngIf="invalidData" class="form-error">Invalid credentials</span>
             </div>
             <div class="button-wrapper d-flex align-items-center flex-column">
                 <button class="login-btn" type="submit" [disabled]="loginForm.invalid">SIGN IN</button>

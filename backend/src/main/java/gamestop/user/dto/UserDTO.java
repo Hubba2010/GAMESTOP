@@ -1,9 +1,11 @@
 package gamestop.user.dto;
 
+import jakarta.validation.constraints.Email;
+
 public class UserDTO {
 
     private Long id;
-
+    @Email
     private String email;
 
     public UserDTO() {

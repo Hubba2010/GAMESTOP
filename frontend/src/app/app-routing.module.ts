@@ -5,6 +5,8 @@ import { RegisterComponent } from "./feature/register/register.component";
 import { LoginComponent } from "./feature/login/login.component";
 import { ProductListComponent } from "./feature/product/product-list/product-list.component";
 import { SelectedProductComponent } from "./feature/product/selected-product/selected-product.component";
+import { CartComponent } from "./feature/cart/cart.component";
+// import { NotLoggedInGuard } from "./feature/services/guard/not-logged-in.guard";
 
 export const mainRoutes: Routes = [
     {
@@ -13,10 +15,12 @@ export const mainRoutes: Routes = [
     },
     {
         path: 'login',
+        // canActivate: [NotLoggedInGuard],
         component: LoginComponent
     },
     {
         path: 'register',
+        // canActivate: [NotLoggedInGuard],
         component: RegisterComponent
     },
     {
@@ -26,6 +30,10 @@ export const mainRoutes: Routes = [
     {
         path: 'product',
         component: SelectedProductComponent
+    },
+    {
+        path: 'cart',
+        component: CartComponent
     }
 ];
 

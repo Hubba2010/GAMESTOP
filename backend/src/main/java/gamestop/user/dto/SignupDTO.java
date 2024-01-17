@@ -1,7 +1,10 @@
 package gamestop.user.dto;
 
+import jakarta.validation.constraints.Email;
+
 public class SignupDTO {
 
+    @Email
     private String email;
 
     private String password;

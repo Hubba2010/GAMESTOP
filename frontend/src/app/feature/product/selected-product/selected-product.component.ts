@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription, share } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { ProductService } from '../../services/product.service';
@@ -20,7 +20,8 @@ export class SelectedProductComponent {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private productService: ProductService) {
+    private productService: ProductService,
+    private router: Router) {
     this.productId = +this.activatedRoute.snapshot.queryParams['id'];
     this.productData$ = this.productService.getProductById(this.productId).pipe(share());
 
@@ -52,7 +53,17 @@ export class SelectedProductComponent {
   }
   
   public addToCart(): void {
+    if (!this.productData) {
+      return;
+    }
+
     console.log({quantity: this.buyAmount, product: this.productData})
+
+    // navigate to category of added product
+    const queryParams = {
+      productType: this.productData.productType
+    }
+    this.router.navigate(['/product-list'], { queryParams });
   }
 
 }

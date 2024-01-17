@@ -5,11 +5,14 @@
     </div>
     <div class="containr d-flex">
         <search-product></search-product>
-        <div class="sign-btns">
-            <a class="login-btn" routerLink="/login" routerLinkActive="selected">Sign in</a>
-            <a class="register-btn" routerLink="/register" routerLinkActive="selected">Sign up</a>
-        </div>
-        <a class="shopping-cart" href="#">
+        <ng-container>
+            <div class="sign-btns">
+                <a class="login-btn" routerLink="/login" routerLinkActive="selected">Sign in</a>
+                <a class="register-btn" routerLink="/register" routerLinkActive="selected">Sign up</a>
+            </div>
+        </ng-container>
+
+        <a class="shopping-cart" routerLink="/cart" routerLinkActive="selected">
             <span class="shopping-cart__description">Cart</span>
             <div class="shopping-cart__icon">
                 <span class="shopping-cart__icon--count">1</span>
@@ -18,3 +21,7 @@
         </a>
     </div>
 </header>
+
+<!-- <ng-template #loggedInUserData let>
+    Welcome, {{}}
+</ng-template> -->

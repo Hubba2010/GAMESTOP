@@ -2,6 +2,7 @@ package gamestop.security;
 
 import gamestop.user.dto.SignupDTO;
 import gamestop.user.dto.UserDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,9 @@ public class SignupController {
     private AuthService authService;
 
     @PostMapping("/sign-up")
-    public ResponseEntity<?> signupUser(@RequestBody SignupDTO signupDTO) {
+    public ResponseEntity<?> signupUser(@Valid @RequestBody SignupDTO signupDTO) {
         UserDTO createdUser = authService.createUser(signupDTO);
-        if (createdUser == null){
+        if (createdUser == null) {
             return new ResponseEntity<>("User not created, come again later!", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);

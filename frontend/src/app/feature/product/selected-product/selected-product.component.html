@@ -21,7 +21,8 @@
                 </div>
                 <div class="product-data__price">
                     <span class="product-data__price--actual font-weight-bold">${{productData.price}}</span>
-                    <span class="product-data__price--previous font-weight-bold">${{productData.previousPrice}}</span>
+                    <span *ngIf="productData.previousPrice"
+                        class="product-data__price--previous font-weight-bold">${{productData.previousPrice}}</span>
                 </div>
             </div>
             <div class="product-set-amount">
