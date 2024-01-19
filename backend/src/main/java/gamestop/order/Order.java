@@ -1,18 +1,23 @@
 package gamestop.order;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import gamestop.product.Product;
 import gamestop.user.User;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
+@Entity(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonIgnore
     @ManyToOne
+    @Cascade(CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
     @OneToMany

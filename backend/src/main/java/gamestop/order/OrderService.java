@@ -3,6 +3,7 @@ package gamestop.order;
 import gamestop.order.dto.SaveOrderDTO;
 import gamestop.product.Product;
 import gamestop.product.ProductRepository;
+import gamestop.user.User;
 import gamestop.user.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -46,9 +47,14 @@ public class OrderService {
 
     public void purchase(SaveOrderDTO order){
         Order orderToSave = new Order();
+        User user = userRepository.findById(order.getUserId()).get();
         orderToSave.setProducts(order.getProducts());
-        orderToSave.setUser(userRepository.findById(order.getUserId()).get());
+        orderToSave.setUser(user);
         orderToSave.setDate(LocalDate.now());
+        List<Order> orders = user.getOrders();
+        orders.add(orderToSave);
+        user.setOrders(orders);
+        userRepository.save(user);
         orderRepository.save(orderToSave);
     }
 }

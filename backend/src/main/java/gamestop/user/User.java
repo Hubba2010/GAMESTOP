@@ -16,7 +16,7 @@ public class User {
     private String login;
     private String password;
     private Double balance;
-    @OneToMany
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders;
 
     public User() {
