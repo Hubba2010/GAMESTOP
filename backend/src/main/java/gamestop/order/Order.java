@@ -21,6 +21,7 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
     @OneToMany
+    @JoinColumn(name = "order_id")
     private List<Product> products;
     private LocalDate date;
 

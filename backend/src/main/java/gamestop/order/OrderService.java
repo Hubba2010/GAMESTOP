@@ -54,7 +54,6 @@ public class OrderService {
         List<Order> orders = user.getOrders();
         orders.add(orderToSave);
         user.setOrders(orders);
-        userRepository.save(user);
         orderRepository.save(orderToSave);
     }
 }

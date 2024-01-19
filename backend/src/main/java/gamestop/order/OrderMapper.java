@@ -11,7 +11,6 @@ public class OrderMapper {
         }
         return new OrderDTO(
                 order.getId(),
-                order.getUser(),
                 order.getProducts(),
                 order.getDate(),
                 sum
