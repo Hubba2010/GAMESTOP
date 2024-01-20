@@ -12,13 +12,7 @@ import { OrderService } from '../services/order.service';
 export class OrderHistoryComponent {
   public readonly user = this.authService.getUser(); 
   public readonly orderData$: Observable<any> =
-   this.user?.id ? this.orderService.getUserOrders(this.user.id).pipe(
-    map((orders: OrderDto[]) => {
-      return orders.map((order: OrderDto) => {
-        return {...order, date: (new Date(...order.date)).toLocaleString()}
-      })
-    })
-   ) : NEVER;
+   this.user?.id ? this.orderService.getUserOrders(this.user.id) : NEVER;
 
   constructor(
     private orderService: OrderService,

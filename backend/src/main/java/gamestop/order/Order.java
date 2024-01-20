@@ -1,5 +1,6 @@
 package gamestop.order;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import gamestop.product.Product;
 import gamestop.user.User;
@@ -23,6 +24,7 @@ public class Order {
     @ManyToMany
     @JoinColumn(name = "order_id")
     private List<Product> products;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
     private Double orderValue;
 
