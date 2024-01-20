@@ -7,7 +7,7 @@ import gamestop.user.User;
 import gamestop.user.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,9 +38,11 @@ public class OrderService {
     }
 
     public double calculateOrderValue(SaveOrderDTO order){
-        double sum = 0;
+        Double sum = 0.0;
         for(int i=0;i<order.getProducts().size();i++){
-            sum += order.getProducts().get(i).getPrice();
+            if( order.getProducts().get(i).getAmount() != null) {
+                sum += order.getProducts().get(i).getAmount() * order.getProducts().get(i).getPrice();
+            }
         }
         return sum;
     }
@@ -50,7 +52,8 @@ public class OrderService {
         User user = userRepository.findById(order.getUserId()).get();
         orderToSave.setProducts(order.getProducts());
         orderToSave.setUser(user);
-        orderToSave.setDate(LocalDate.now());
+        orderToSave.setDate(LocalDateTime.now());
+        orderToSave.setOrderValue(calculateOrderValue(order));
         List<Order> orders = user.getOrders();
         orders.add(orderToSave);
         user.setOrders(orders);

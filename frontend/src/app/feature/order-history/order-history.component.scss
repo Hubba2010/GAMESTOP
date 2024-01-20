@@ -1,0 +1,25 @@
+.order-history-container {
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+
+    .order-history-entry {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        padding: 20px;
+        font-size: 1.3em;
+        box-shadow: 0px 0px 20px 0px #c9c9c9;
+        transition: 0.3s transform ease-in-out, 0.3s box-shadow ease-in-out;
+
+        &__date {
+            font-style: italic;
+            font-size: 0.6em;
+            color: #888;
+        }
+    }
+
+}

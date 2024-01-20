@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity(name = "orders")
@@ -20,19 +20,21 @@ public class Order {
     @Cascade(CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany
+    @ManyToMany
     @JoinColumn(name = "order_id")
     private List<Product> products;
-    private LocalDate date;
+    private LocalDateTime date;
+    private Double orderValue;
 
     public Order() {
     }
 
-    public Order(Long id, User user, List<Product> products, LocalDate date) {
+    public Order(Long id, User user, List<Product> products, LocalDateTime date, Double orderValue) {
         this.id = id;
         this.user = user;
         this.products = products;
         this.date = date;
+        this.orderValue = orderValue;
     }
 
     public Long getId() {
@@ -59,11 +61,19 @@ public class Order {
         this.products = products;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public Double getOrderValue() {
+        return orderValue;
+    }
+
+    public void setOrderValue(Double orderValue) {
+        this.orderValue = orderValue;
     }
 }

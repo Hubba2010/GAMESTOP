@@ -1,10 +1,12 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, map } from "rxjs";
+import { OrderDto } from "src/app/models/order-dto";
 import { SaveOrderDto } from "src/app/models/save-order-dto";
 import { AuthService } from "./auth.service";
 
 const ORDER_URL = 'http://localhost:8080/order';
+const USER_URL = 'http://localhost:8080/user';
 
 @Injectable({
     providedIn: 'root'
@@ -19,6 +21,10 @@ export class OrderService {
         return this.http.post(ORDER_URL, order, {headers: this.createAuthorizationHeader()});
     }
 
+    public getUserOrders(userId: number): Observable<Array<OrderDto>> {
+        return this.http.get<Array<OrderDto>>(`${USER_URL}/${userId}/orders`, {headers: this.createAuthorizationHeader()});
+    }
+
     private createAuthorizationHeader() {
     const jwtToken = this.authService.getUser()?.jwtToken;
     if (jwtToken) {
@@ -26,7 +32,7 @@ export class OrderService {
           'Authorization', 'Bearer ' + jwtToken
       )
     } else {
-      console.log("JWT token not found in the Local Storage");
+      console.error("Not authorized.");
       return new HttpHeaders().set("","");
     }
   }

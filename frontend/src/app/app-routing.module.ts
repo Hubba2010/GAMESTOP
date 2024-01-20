@@ -7,7 +7,7 @@ import { ProductListComponent } from "./feature/product/product-list/product-lis
 import { SelectedProductComponent } from "./feature/product/selected-product/selected-product.component";
 import { CartComponent } from "./feature/cart/cart.component";
 import { ProductListSearchComponent } from "./feature/product/product-list-search/product-list-search.component";
-// import { NotLoggedInGuard } from "./feature/services/guard/not-logged-in.guard";
+import { OrderHistoryComponent } from "./feature/order-history/order-history.component";
 
 export const mainRoutes: Routes = [
     {
@@ -16,12 +16,10 @@ export const mainRoutes: Routes = [
     },
     {
         path: 'login',
-        // canActivate: [NotLoggedInGuard],
         component: LoginComponent
     },
     {
         path: 'register',
-        // canActivate: [NotLoggedInGuard],
         component: RegisterComponent
     },
     {
@@ -39,6 +37,10 @@ export const mainRoutes: Routes = [
     {
         path: 'cart',
         component: CartComponent
+    },
+    {
+        path: 'order-history',
+        component: OrderHistoryComponent
     }
 ];
 

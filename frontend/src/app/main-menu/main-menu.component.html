@@ -20,7 +20,7 @@
                 </button>
                 <div *ngIf="userDetailsVisible$ | async" class="user-details">
                     <span>Email address: {{user.email}}</span>
-                    <button>Purchase history</button>
+                    <button (click)="checkHistory()">Purchase history</button>
                     <button (click)="logout()">Logout</button>
                 </div>
             </div>

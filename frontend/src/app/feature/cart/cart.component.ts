@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs';
-import { Product } from 'src/app/models/product';
+import { Product, ProductCart } from 'src/app/models/product';
 import { SaveOrderDto } from 'src/app/models/save-order-dto';
 import { AuthService } from '../services/auth.service';
 import { CartService } from '../services/cart.service';
@@ -14,8 +14,8 @@ export class CartComponent {
   public readonly cartData$ = this.cartService.cart$.pipe(
     map((cartData: SaveOrderDto) => cartData.products)
   );
-  public readonly orderValue$ = this.cartData$.pipe(map((products: Product[]) => {
-    return products.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0)
+  public readonly orderValue$ = this.cartData$.pipe(map((products: ProductCart[]) => {
+    return products.reduce((acc, curr) => acc + (curr.price * curr.amount), 0)
   }))
   public readonly user$ = this.authService.user$.asObservable();
 
@@ -26,20 +26,23 @@ export class CartComponent {
   
 
   public trackByFn(index: number, item: any): number {
-    return item.id; // or index, or unique identifier property
+    return index; // or index, or unique identifier property
   }
 
   public removeItemFromCart(productId: number) {
     this.cartService.removeItemFromCart(productId);
   }
 
-  public increaseQuantity(product: Product): void {
-    this.cartService.addProductToCart(product, 1);
+  public increaseQuantity(product: ProductCart): void {
+    const updatedAmount = product.amount + 1;
+    this.cartService.addProductToCart({...product, amount: updatedAmount});
   }
 
-  public decreaseQuantity(product: Product): void {
-    if (product.quantity > 1)
-    this.cartService.addProductToCart(product, -1);
+  public decreaseQuantity(product: ProductCart): void {
+    if (product.amount > 1) {
+      const updatedAmount = product.amount - 1;
+      this.cartService.addProductToCart({...product, amount: updatedAmount});
+    }
   }
 
   public purchase(): void {

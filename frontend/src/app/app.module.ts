@@ -14,6 +14,7 @@ import { FooterModule } from './footer/footer.module';
 import { MainMenuModule } from './main-menu/main-menu.module';
 import { SubNavModule } from './sub-nav/sub-nav.module';
 import { ProductListSearchModule } from './feature/product/product-list-search/product-list-search.module';
+import { OrderHistoryModule } from './feature/order-history/order-history.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { ProductListSearchModule } from './feature/product/product-list-search/p
     ProductListModule,
     ProductListSearchModule,
     SelectedProductModule,
-    CartModule
+    CartModule,
+    OrderHistoryModule
   ],
   providers: [],
   bootstrap: [AppComponent]

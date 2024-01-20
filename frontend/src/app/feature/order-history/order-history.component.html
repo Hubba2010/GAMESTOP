@@ -1,0 +1,22 @@
+<div class="order-history-container">
+    <ng-container *ngIf="orderData$ | async as orders; else noOrders">
+        <div *ngFor="let order of orders" class="row order-history-entry">
+            <div class="order-history-entry__images">
+                <ng-container *ngFor="let image of (order.products | pluck:'imageUrl')">
+                    <img width="80px" [src]="image">
+                </ng-container>
+            </div>
+            <div class="order-history-entry__price">
+                <span class="font-weight-bold">Order Value: {{order.orderValue}}$</span>
+            </div>
+            <div class="order-history-entry__date">
+                <span class="font-weight-bold">Date: {{order.date}}</span>
+            </div>
+        </div>
+    </ng-container>
+
+</div>
+
+<ng-template #noOrders>
+    <h3>You do not have any orders yet.</h3>
+</ng-template>

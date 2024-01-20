@@ -60,7 +60,9 @@ export class SelectedProductComponent {
     }
 
     console.log({product: {...this.productData, quantity: this.buyAmount}})
-    this.cartService.addProductToCart(this.productData, this.buyAmount);
+    const {quantity, ...addedProduct} = {...this.productData};
+
+    this.cartService.addProductToCart({...addedProduct, amount: this.buyAmount});
 
     // navigate to category of added product
     const queryParams = {

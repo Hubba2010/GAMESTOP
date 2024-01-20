@@ -10,7 +10,7 @@
                         <h4>{{productEntry.name}}</h4>
                     </div>
                     <div class="cart-entry__amount">
-                        <span class="font-weight-bold">{{productEntry.quantity}}X</span>
+                        <span class="font-weight-bold">{{productEntry.amount}}X</span>
                     </div>
                     <div class="cart-entry__set-amount">
                         <button type="button" (click)="increaseQuantity(productEntry)"
@@ -19,7 +19,7 @@
                             class="amount-btn"><span>&#8595;</span></button>
                     </div>
                     <div class="cart-entry__price">
-                        <span class="font-weight-bold">${{productEntry.price * productEntry.quantity}}</span>
+                        <span class="font-weight-bold">${{productEntry.price * productEntry.amount}}</span>
                     </div>
                     <div class="delete-icon" (click)="removeItemFromCart(productEntry.id)"></div>
                 </div>

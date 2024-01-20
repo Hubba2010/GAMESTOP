@@ -3,6 +3,8 @@ package gamestop.product;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity(name = "products")
 public class Product {
     @Id
@@ -15,6 +17,7 @@ public class Product {
     @Column(length = 1000)
     private String description;
     private int quantity;
+    private Integer amount;
     private double price;
     @Column
     @Nullable
@@ -25,13 +28,14 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long id, ProductType productType, String name, String imageUrl, String description, int quantity, double price, Double previousPrice, double rating, double ratingAmount) {
+    public Product(Long id, ProductType productType, String name, String imageUrl, String description, int quantity, Integer amount, double price, Double previousPrice, double rating, double ratingAmount) {
         this.id = id;
         this.productType = productType;
         this.name = name;
         this.imageUrl = imageUrl;
         this.description = description;
         this.quantity = quantity;
+        this.amount = amount;
         this.price = price;
         this.previousPrice = previousPrice;
         this.rating = rating;
@@ -123,6 +127,13 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 
     public Double getPrice() {

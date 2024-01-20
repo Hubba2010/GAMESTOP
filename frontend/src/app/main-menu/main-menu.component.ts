@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from '../feature/services/auth.service';
 import { CartService } from '../feature/services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'main-menu',
@@ -18,7 +19,8 @@ export class MainMenuComponent {
 
   constructor(
     private authService: AuthService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ){}
 
   public toggleUserDetailsVisibility(): void {
@@ -28,5 +30,10 @@ export class MainMenuComponent {
   public logout(): void {
     this.toggleUserDetailsVisibility();
     this.authService.logout();
+  }
+
+  public checkHistory(): void {
+    this.toggleUserDetailsVisibility();
+    this.router.navigate(['/order-history']);
   }
 }

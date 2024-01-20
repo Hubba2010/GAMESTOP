@@ -12,3 +12,16 @@ export interface Product {
     rating: number;
     ratingAmount: number;
 }
+
+export interface ProductCart {
+    id: number;
+    productType: keyof typeof ProductListTypes;
+    name: string;
+    imageUrl?: string | null;
+    description: string;
+    amount: number;
+    price: number;
+    previousPrice?: number | null;
+    rating: number;
+    ratingAmount: number;
+}
