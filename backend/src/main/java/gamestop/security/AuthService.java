@@ -23,6 +23,7 @@ public class AuthService {
         UserDTO userDTO = new UserDTO();
         userDTO.setId(createdUser.getId());
         userDTO.setEmail(createdUser.getEmail());
+        userDTO.setLogin(createdUser.getLogin());
         return userDTO;
     }
 }
